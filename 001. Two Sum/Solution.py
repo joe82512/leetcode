@@ -9,12 +9,12 @@ class Solution:
 
     # Runtime 84 ms / Memory 14.2 MB
     def twoSum_2(self, nums, target):
-        hashMap = {} # y_value:x_index, x+y=target
+        hash_map = {} # y_value:x_index, x+y=target
         for idx, val in enumerate(nums):
-            if val not in hashMap:
-                hashMap[target-val] = idx
+            if val not in hash_map:
+                hash_map[target-val] = idx
             else:
-                return [hashMap[val],idx]
+                return [hash_map[val],idx]
 
 
 
