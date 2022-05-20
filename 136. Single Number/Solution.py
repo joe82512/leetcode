@@ -4,13 +4,16 @@ class Solution:
     def singleNumber_1(self, nums):
         nums = sorted(nums)
         for i in range(1,len(nums),2):
-            if nums[i] != nums[i-1]:
-                return nums[i-1]
+            if nums[i] != nums[i-1]: #odd != even
+                return nums[i-1] #odd
         return nums[-1] # last
 
-    # Runtime  / Memory 
-    def maxSubArray_2(self, nums):
-        pass
+    # Runtime 102 ms / Memory 15.6 MB
+    def singleNumber_2(self, nums):
+        result = nums[0]
+        for i in range(1, len(nums)):
+            result ^= nums[i] #XOR
+        return result
 
 
 
