@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 class Solution:
-    # Runtime 56 ms / Memory 13.5 MB
+    # Runtime 31 ms / Memory 13.4 MB
     def removeElement_1(self, nums, val):
         n = nums.count(val)
         k = len(nums) - n
