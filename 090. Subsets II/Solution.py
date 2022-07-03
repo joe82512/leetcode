@@ -9,9 +9,21 @@ class Solution:
             result += [ j+[i] for j in result if not j+[i] in result]
         return result
 
-    # Runtime ms / Memory MB    
+    # Runtime 47 ms / Memory 13.7 MB    
     def subsetsWithDup_2(self, nums):
-        pass
+        if len(nums)==1:
+            return [[],nums]
+        nums.sort()
+        result = []
+        self.DFS(nums, [], result)
+        return result
+    
+    def DFS(self, nums, path, result):
+        result.append(path)
+        for i in range(len(nums)):
+            if i >0 and nums[i]==nums[i-1]:
+                continue
+            self.DFS(nums[i+1:], path+[nums[i]], result) 
 
 
 
