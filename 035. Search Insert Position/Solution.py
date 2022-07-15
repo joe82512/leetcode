@@ -17,9 +17,9 @@ class Solution:
 
 if __name__ == '__main__':
     print(Solution().searchInsert_1([1,3,5,6],5))
-    print(Solution().searchInsert_1([[1,3,5,6]],2))
-    print(Solution().searchInsert_1([[1,3,5,6]],7))
+    print(Solution().searchInsert_1([1,3,5,6],2))
+    print(Solution().searchInsert_1([1,3,5,6],7))
     print("=====================================")
     print(Solution().searchInsert_2([1,3,5,6],5))
-    print(Solution().searchInsert_2([[1,3,5,6]],2))
-    print(Solution().searchInsert_2([[1,3,5,6]],7))
+    print(Solution().searchInsert_2([1,3,5,6],2))
+    print(Solution().searchInsert_2([1,3,5,6],7))
