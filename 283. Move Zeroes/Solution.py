@@ -8,16 +8,14 @@ class Solution:
                 nums[j],nums[i]=nums[i],nums[j]
                 i+=1
 
-    # Runtime 202 ms / Memory 14.7 MB
+    # Runtime 227 ms / Memory 14.7 MB
     def moveZeroes_2(self, nums):
-        count = 0
         shift = 0
         for i in range(len(nums)):
             if nums[i-shift] == 0:
                 nums.pop(i-shift)
-                count += 1
                 shift += 1
-        nums += [0]*count
+        nums += [0]*shift
 
 
 
