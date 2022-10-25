@@ -18,11 +18,19 @@ class Solution(object):
             head.next = r
             r = head
             head = temp
+            # head.next, r, head = r, head, head.next
         return r
     
-    # Runtime ms / Memory MB
-    def reverseList_2(self, node):
-        pass
+    # Runtime 15 ms / Memory 18.9 MB
+    def reverseList_2(self, head):
+        return self.reverse(head,None)
+        
+    def reverse(self,head,r):
+        if not head:
+            return r
+        temp = head.next
+        head.next = r
+        return self.reverse(temp, head)
 
 
 

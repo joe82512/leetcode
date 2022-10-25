@@ -16,6 +16,7 @@ var reverseList = function(head) {
         head.next = r
         r = head
         head = temp
+        // [head.next, r, head] = [r, head, head.next]
     }
     return r
 };
