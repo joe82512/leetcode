@@ -15,7 +15,7 @@ class Solution(object):
         
         # Init
         curr = Node(head.val)
-        result = Node(0, curr)
+        result = Node(0, next=curr)
         mp = {head: result.next}
         
         # Traversal
@@ -23,7 +23,7 @@ class Solution(object):
             # Next part
             if not head.next:
                 curr.next = None
-            elif head.next in mp:
+            elif head.next in mp: #random already add
                 curr.next = mp[head.next]
             else:
                 curr.next = Node(head.next.val)
@@ -46,8 +46,11 @@ class Solution(object):
 
     # Runtime 54 ms / Memory 14.1 MB
     def copyRandomList_2(self, head):
-        dic = defaultdict(lambda: Node(0))
-        dic[None] = None
+        def defaultValueFormat():
+            return Node(0)
+        dic = defaultdict(defaultValueFormat) # no()
+        #dic = defaultdict(lambda: Node(0))
+        dic[None] = None #set null
         n = head
         while n:
             dic[n].val = n.val
