@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 class Solution(object):
-    # Runtime 1309 ms / Memory 28.7 MB
+    # Runtime 1196 ms / Memory 28.3 MB
     def dailyTemperatures_1(self, temperatures):
         stack = []
         res = [0]*len(temperatures)
         
         for i,t in enumerate(temperatures):
             while len(stack) > 0:
-                lastTuple = stack.pop()
+                lastTuple = stack[-1]
                 if lastTuple[0] < t:
                     res[lastTuple[1]] = i - lastTuple[1]
+                    stack.pop()
                 else:
-                    stack.append(lastTuple)
                     break
             stack.append((t, i))
         return res

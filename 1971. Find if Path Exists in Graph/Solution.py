@@ -30,15 +30,15 @@ class Solution(object):
 
 class DisjoinSet():
     def __init__(self,iSize):
-        self.parent = [i for i in range(iSize)]
+        self.parent = [i for i in range(iSize)] #root(min) list
     
-    def find(self,x):
+    def find(self,x): #find root index
         root = self.parent[x]
         while self.parent[root] != root:
             root = self.parent[root]
         return root
 
-    def connect(self,left,right):
+    def connect(self,left,right): #update parent
         (leftRoot, rightRoot) = (self.find(left), self.find(right))
         if leftRoot < rightRoot:
             self.parent[rightRoot] = leftRoot
