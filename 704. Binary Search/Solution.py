@@ -15,4 +15,4 @@ class Solution(object):
 
     # Runtime ms / Memory MB
     def search_2(self, nums, target):
-        pass
+        pass 
