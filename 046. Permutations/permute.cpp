@@ -1,10 +1,9 @@
 class Solution {
 public:
-    vector<vector<int>> permuteUnique(vector<int>& nums) {
+    vector<vector<int>> permute(vector<int>& nums) {
         vector<vector<int>> res;
         vector<int> path;
         vector<int> visited(nums.size(), 0);
-        sort(nums.begin(), nums.end()); //solve same num
         DFS(nums, visited, path, res);
         return res;
     }
@@ -19,8 +18,6 @@ public:
         for (int i=0; i<nums.size(); i++) {
             // already used
             if (visited[i] == 1) { continue; }
-            // same num
-            if (i>0 && nums[i]==nums[i-1] && visited[i-1] == 0) { continue; }
             // DFS
             else {
                 path.push_back(nums[i]);

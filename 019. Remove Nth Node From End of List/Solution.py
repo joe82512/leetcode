@@ -24,7 +24,7 @@ class Solution(object):
         return result.next
 
     # Runtime 35 ms / Memory 13.5 MB
-    def hasCycle_2(self, head, n):
+    def removeNthFromEnd_2(self, head, n):
         fast = slow = head
         for i in range(n):
             fast = fast.next
