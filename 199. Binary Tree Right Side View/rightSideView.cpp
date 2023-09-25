@@ -11,22 +11,19 @@
  */
 class Solution {
 public:
-    vector<int> res;
-    void dfs(TreeNode* root, int depth) {
-        if (root) {
-            if (res.size()==depth) {
-                res.push_back(root->val);
-            }
-            dfs(root->right, depth+1);
-            dfs(root->left, depth+1);
-        }
-        else {
-            return ;
-        }
-    }      
-
     vector<int> rightSideView(TreeNode* root) {
-        dfs(root,0);
+        vector<int> res;
+        dfs(root,0,res);
         return res;
+    }
+
+    void dfs(TreeNode* node, int depth, vector<int>& res) {
+        // goto end
+        if (!node) { return; }
+        // else
+        if (res.size()==depth) { res.push_back(node->val); } //1: get middle number
+        dfs(node->right, depth+1, res); //2: goto next step, right must priority
+        dfs(node->left, depth+1, res);
+
     }
 };

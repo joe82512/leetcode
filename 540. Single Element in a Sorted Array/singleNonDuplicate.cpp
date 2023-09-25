@@ -1,21 +1,17 @@
 class Solution {
 public:
     int singleNonDuplicate(vector<int>& nums) {
-        int left = 0;
-        int right = nums.size()-1;
+        // O(logn) -> binary search
+        int L=0, R=nums.size()-1;
         int mid;
-        while (left < right) {
-            mid = (left+right)/2;
-            if (mid%2 == 1) {
-                mid--;
-            }
-            if (nums[mid] != nums[mid+1]) {
-                right = mid;
-            }
-            else {
-                left = mid+2;
-            }
+        while (L < R) {
+            mid = L + (R-L)/2;
+            // get even
+            if (mid%2 == 1) { mid--; }
+            // LR
+            if (nums[mid] != nums[mid+1]) { R = mid; } //result in left
+            else { L = mid+2; } //pair
         }
-        return nums[left];
+        return nums[L];
     }
 };

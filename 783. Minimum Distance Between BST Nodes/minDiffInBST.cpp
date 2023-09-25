@@ -11,23 +11,25 @@
  */
 class Solution {
 public:
-    int prev = -1;
-    int r = 1E5;
     int minDiffInBST(TreeNode* root) {
-        getNode(root);
-        return r;
+        // if (!root) { return 0; }
+        // else if (!root->left && !root->right) { return root->val; }
+        // note : node >= 2 , impossible case
+        int output = INT_MAX;
+        int temp = -1;
+        DFS(root, temp, output);
+        return output;
     }
-    void getNode(TreeNode* node) {
-        if (node) {
-            getNode(node->left);
-            if (prev != -1) {
-                r = min(r, node->val - prev);
-            }
-            prev = node->val;
-            getNode(node->right);
+    
+    void DFS(TreeNode* node,int &temp, int &output) {
+        if (!node) { return; }
+        // else
+        DFS(node->left,temp,output);
+        // First node case
+        if (temp != -1) {
+            output = min(output, node->val-temp); //val > temp
         }
-        else {
-            return;
-        }
+        temp = node->val;
+        DFS(node->right,temp,output);
     }
 };

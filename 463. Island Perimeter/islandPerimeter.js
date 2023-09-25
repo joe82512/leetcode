@@ -1,22 +1,26 @@
 /**
- * @param {number} n
+ * @param {number[][]} grid
  * @return {number}
  */
-var fib = function(n) {
-    let [a,b] = [0,1]
-    if (n===0) {
-        return a
-    }
-    else if (n===1) {
-        return b
-    }
-    else {
-        for (let i=0;i<n-1;i++) {
-            [b,a] = [a+b,b]
+var islandPerimeter = function(grid) {
+    const len_row = grid[0].length
+    const len_column = grid.length
+    var n = 0
+    for (let i=0;i<len_column;i++) {
+        for (let j=0;j<len_row;j++) {
+            if (grid[i][j] === 1) {
+                n += 4
+                if ((i != 0) && (grid[i-1][j]==1)) {
+                    n -= 2
+                }
+                if ((j != 0) && (grid[i][j-1]==1)) {
+                    n -= 2
+                }
+            } 
         }
-        return b
     }
+    return n
 };
 
-// Runtime 91 ms / Memory 41.9 MB
+// Runtime 246 ms / Memory 50.5 MB
 // debug: https://jsfiddle.net/

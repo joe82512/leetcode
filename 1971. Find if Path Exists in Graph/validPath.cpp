@@ -1,39 +1,31 @@
 class Solution {
 public:
     bool validPath(int n, vector<vector<int>>& edges, int source, int destination) {
+        // create path map
         unordered_map<int,vector<int>> path;
         for (vector<int> e:edges) {
-            if (path.find(e[0])!=path.end()) {
-                path[e[0]].push_back(e[1]);
-            }
-            else {
-                path[e[0]] = {e[1]};
-            }
-            if (path.find(e[1])!=path.end()) {
-                path[e[1]].push_back(e[0]);
-            }
-            else {
-                path[e[1]] = {e[0]};
-            }
+            path[e[0]].push_back(e[1]);
+            path[e[1]].push_back(e[0]);
         }
 
+        // BFS + visited
         queue<int> q;
         q.push(source);
+        vector<bool> visited(n); //avoid same path
 
-        vector<bool> visited(n);
         while (!q.empty()) {
-            int curr = q.front();
+            int now_e = q.front();
             q.pop();
-            if (curr==destination) {
-                return true;
-            }
-            else if (path.find(curr)!=path.end() & !visited[curr]) {
-                for (int pv:path[curr]) {
-                    q.push(pv);
+            // goal
+            if (now_e==destination) { return true; }
+            // on the way , avoid same way
+            else if (path.find(now_e)!=path.end() & !visited[now_e]) {
+                for (int next_e:path[now_e]) {
+                    q.push(next_e);
                 }                
             }
-            visited[curr] = true;
+            visited[now_e] = true; //sign way
         }
-        return false;
+        return false; //not goal
     }
 };

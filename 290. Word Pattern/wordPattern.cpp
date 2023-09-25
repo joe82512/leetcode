@@ -1,38 +1,26 @@
 class Solution {
 public:
     bool wordPattern(string pattern, string s) {
-        istringstream is(s);
-        string word;
-        vector<string> list_str;
-        while( is>>word ) {  
-            list_str.push_back(word);  
-        }
-        unordered_map<char, string> result;
-        vector<string> value;
-        int exist_cnt;
+        unordered_map<char, string> patMap;
+        istringstream in(s);
+        int i = 0, n = pattern.size();
 
-        if (list_str.size() != pattern.size()) {
-            return false;
-        }
-
-        for (int i=0; i<pattern.size(); i++) {
-            exist_cnt = result.count(pattern[i]);
-            if (exist_cnt > 0) {
-                if (result[pattern[i]] != list_str[i]) { //error value
-                    return false;
-                }
+        for (string word; in >> word; i++) {
+            // size not match
+            if (i > n) { return false; }
+            // pat exist
+            if (patMap.count(pattern[i])) {
+                if (patMap[pattern[i]] != word) { return false; }
             }
+            // pat not exist
             else {
-                result[pattern[i]] = list_str[i];
-                exist_cnt = count(value.begin(),value.end(),list_str[i]);
-                if (exist_cnt > 0) { //duplicate value
-                    return false;
+                // word collision
+                for (auto pat:patMap) {
+                    if (pat.second == word) { return false; }
                 }
-                else {
-                    value.push_back(list_str[i]);
-                }
+                patMap[pattern[i]] = word;
             }
         }
-        return true;
+        return (i == n);
     }
 };

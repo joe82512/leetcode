@@ -1,22 +1,24 @@
 class Solution {
 public:
     vector<int> dailyTemperatures(vector<int>& temperatures) {
-        stack <int> st;
-        vector <int> res(temperatures.size());
+        int n = temperatures.size();
+        stack<int> st; //record small index in Right
+        vector<int> output(n,0);
 
-        for (int i=0; i<temperatures.size(); i++) {
+        for (int i=0; i<n; i++) {
             while (!st.empty()) {
-                int last = st.top();
-                if (temperatures[i] > temperatures[last]) {
-                    res[last] = i - last;
+                int now = st.top();
+                // continue pop(-1) if large
+                if (temperatures[i] > temperatures[now]) {
+                    output[now] = i - now;
                     st.pop();
                 }
-                else {
-                    break;
-                }
+                // not pop and break, st must record if small
+                else { break; }
             }
-            st.push(i);
+            st.push(i); //append record
         }
-        return res;
+
+        return output;
     }
 };

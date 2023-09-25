@@ -12,7 +12,7 @@ class Solution(object):
             else:
                 R = R-1
             boats += 1
-        return boats+1
+        return boats
     
     # Runtime ms / Memory MB
     def numRescueBoats_2(self, people, limit):

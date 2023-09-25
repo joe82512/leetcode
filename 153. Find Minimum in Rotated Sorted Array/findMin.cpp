@@ -1,18 +1,14 @@
 class Solution {
 public:
     int findMin(vector<int>& nums) {
-        int left = 0;
-        int right = nums.size()-1;
-        int mid;
-        while (left < right) {
-            mid = left + (right-left)/2;
-            if (nums[mid] < nums[right]) {
-                right = mid;
-            }
-            else {
-                left = mid + 1;
-            }
+        // binary search tree O(log(n))
+        // find small
+        int L = 0, R = nums.size()-1;
+        while (L < R) {
+            int mid = L + (R-L)/2;
+            if (nums[mid] < nums[R]) { R = mid; }
+            else { L = mid + 1; }
         }
-        return nums[left];
+        return nums[L];
     }
 };

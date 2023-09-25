@@ -20,46 +20,26 @@ public:
 
 class Solution {
 public:
-    // void dfs (Node* node, int path, map<int, vector<int>>& output) {
-    void dfs (Node* node, int path, vector<vector<int>>& output) {
-        if (!node) {
-            return;
-        }
-
-        /*
-        // map method
-        if (output.find(path) == output.end()) {
-            vector<int> tmp = {node->val};
-            output[path] = tmp;
-        }
-        else {
-            output[path].push_back(node->val);
-        }
-        */
-
-        // vector method
-        if (output.size() <= path) {
-            output.resize(output.size()+1);
-        }
-        output[path].push_back(node->val);
-        
-        for (auto nodes:node->children) {
-            dfs(nodes, path+1, output);
-        }
-    }
     vector<vector<int>> levelOrder(Node* root) {
-        /*
-        // map method
-        map<int, vector<int>> output; //not unordered_map
-        dfs(root, 0, output);
-        vector<vector<int>> res;
-        for (auto o:output) {
-            res.push_back(o.second);
-        }
-        return res;
-        */
+        // empty
         vector<vector<int>> output;
-        dfs(root, 0, output);
+        if (!root) { return {}; }
+        // BFS
+        queue<Node*> q;
+        q.push(root);
+        while (!q.empty()) {
+            vector<int> temp;
+            int n = q.size();
+            for (int i=0; i<n; i++) {
+                Node* node = q.front();
+                q.pop();
+                temp.push_back(node->val);
+                // append all child
+                for (auto child: node->children) { q.push(child); }
+            }
+            output.push_back(temp);
+        }
+
         return output;
     }
 };
